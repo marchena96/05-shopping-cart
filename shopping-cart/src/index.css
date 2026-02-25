@@ -277,6 +277,7 @@ button {
 button,
 [type=button] {
     -webkit-appearance: button;
+    appearance: button;
 }
 
 button:not(:disabled),
@@ -322,6 +323,7 @@ button:not(:disabled),
 ::file-selector-button {
     font: inherit;
     -webkit-appearance: button;
+    appearance: button;
 }
 
 .display-2 {
