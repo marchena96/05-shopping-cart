@@ -5,8 +5,6 @@ import { db } from "./data/db"
 
 function App() {
 
-  console.log(db);
-
   const [data, setData] = useState(db);
 
   return (
@@ -14,7 +12,6 @@ function App() {
       <Header />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
-
         <div className="row mt-5">
           {
             data.map((product) => (
@@ -26,7 +23,6 @@ function App() {
           }
         </div>
       </main>
-
 
       <footer className="bg-dark mt-5 py-5">
         <div className="container-xl">
