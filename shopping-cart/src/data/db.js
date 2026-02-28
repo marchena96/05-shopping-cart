@@ -3,7 +3,7 @@ export const db = [
         id: 1,
         name: 'Lukather',
         image: 'guitarra_01',
-        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
+        description: 'This is the description for the first product in the shop, it was made with love.',
         price: 299,
     },
     {

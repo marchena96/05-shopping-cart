@@ -17,11 +17,13 @@ function App() {
 
         <div className="row mt-5">
           {
-            data.map(() => (
-              <Product />
+            data.map((product) => (
+              <Product
+                key={product.id}
+                product={product}
+              />
             ))
           }
-
         </div>
       </main>
 
