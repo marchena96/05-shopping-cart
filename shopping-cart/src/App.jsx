@@ -4,7 +4,6 @@ import { useState } from "react"
 import { db } from "./data/db"
 
 function App() {
-
   const [data, setData] = useState(db);
 
   return (
@@ -15,12 +14,14 @@ function App() {
 
         <div className="row mt-5">
           {
-            data.map(() => (
-              <Product />
+            // item: Por cada item dentro de ese arreglo (data), React generará un componente <Product />
+            data.map((item) => (
+              <Product
+                key={item.id}
+                product={item}
+              />
             ))
           }
-
-          <Product />
 
         </div>
       </main>
