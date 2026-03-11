@@ -5,10 +5,28 @@ import { db } from "./data/db"
 
 function App() {
   const [data, setData] = useState(db);
+  const [cart, setCart] = useState([]);
+
+  function addToCart(item) {
+    // Validate if the element exits
+    const itemExists = cart.findIndex((product) => product.id === item.id)
+
+    if (itemExists >= 0) {
+      const updatedCart = [...cart];
+      updatedCart[itemExists].quantity++;
+      setCart(updatedCart);
+    } else {
+      item.quantity = 1;
+      setCart([...cart, item]);
+    }
+
+  }
 
   return (
     <>
-      <Header />
+      <Header
+        cart={cart}
+      />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
@@ -19,13 +37,14 @@ function App() {
               <Product
                 key={item.id}
                 product={item}
+                setCart={setCart}
+                addToCart={addToCart}
+
               />
             ))
           }
-
         </div>
       </main>
-
 
       <footer className="bg-dark mt-5 py-5">
         <div className="container-xl">

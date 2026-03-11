@@ -1,7 +1,8 @@
 
-export function Product({ product }) {
-    const { name, image, price, description } = product
+export function Product({ product, addToCart }) {
+    const { id, name, image, price, description } = product
     // {`/img/${image}.jpg`
+
 
     return (
         <>
@@ -12,10 +13,11 @@ export function Product({ product }) {
                 <div className="col-8">
                     <h3 className="text-black fs-4 fw-bold text-uppercase">{name}</h3>
                     <p>{description}</p>
-                    <p className="fw-black text-primary fs-3">${price}</p>
+                    <p className="fw-black text-primary fs-3">₡{price}</p>
                     <button
                         type="button"
                         className="btn btn-dark w-100 "
+                        onClick={() => addToCart(product)}
                     >Agregar al Carrito</button>
                 </div>
             </div>
