@@ -1,51 +1,29 @@
-import Header from "./components/Header" // Import Header from components
+import Header from "./components/Header"
 import { Product } from "./components/Product"
-import { useState } from "react"
-import { db } from "./data/db"
+import { useCart } from "./hooks/useCart" // Importamos el hook
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState([]);
-
-  function addToCart(item) {
-    // Validate if the element exits
-    const itemExists = cart.findIndex((product) => product.id === item.id)
-
-    if (itemExists >= 0) {
-      const updatedCart = [...cart];
-      updatedCart[itemExists].quantity++;
-      setCart(updatedCart);
-    } else {
-      item.quantity = 1;
-      setCart([...cart, item]);
-    }
-
-  }
+  const { data, cart, addToCart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart } = useCart()
 
   return (
     <>
       <Header
         cart={cart}
+        removeFromCart={removeFromCart}
+        decreaseQuantity={decreaseQuantity}
+        increaseQuantity={increaseQuantity}
+        clearCart={clearCart}
       />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
-
         <div className="row mt-5">
-          {
-            // item: Por cada item dentro de ese arreglo (data), React generará un componente <Product />
-            data.map((item) => (
-              <Product
-                key={item.id}
-                product={item}
-                setCart={setCart}
-                addToCart={addToCart}
-
-              />
-            ))
-          }
+          {data.map((item) => (
+            <Product key={item.id} product={item} addToCart={addToCart} />
+          ))}
         </div>
       </main>
-
       <footer className="bg-dark mt-5 py-5">
         <div className="container-xl">
           <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
@@ -54,5 +32,4 @@ function App() {
     </>
   )
 }
-
 export default App

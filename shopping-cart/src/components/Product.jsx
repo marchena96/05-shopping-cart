@@ -3,6 +3,14 @@ export function Product({ product, addToCart }) {
     const { id, name, image, price, description } = product
     // {`/img/${image}.jpg`
 
+    // Creamos una función interna para manejar el click
+    const handleAdd = () => {
+        addToCart(product);
+        // Lanzamos la notificación
+        toast.success(`¡${name} se agregó al carrito!`, {
+            theme: "colored"
+        });
+    };
 
     return (
         <>
